@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Задание 1: Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999, мы должны получить
+    на выходе объект, в котором в соответствующих свойствах описаны единицы, десятки и сотни. Например, для числа 245 мы
+    должны получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}. Если число превышает 999, необходимо
+    выдать соответствующее сообщение с помощью console.log и вернуть пустой объект. -->
+
+    <script>
+        let a = 873;
+
+        function toObject(a) {
+            if (a > 999 || a < 0) {
+                console.log('Введите число от 0 до 999');
+                return {};
+            }
+
+            let decompose = {
+                ones: a % 10,
+                tens: Math.floor(a / 10) % 10,
+                hundreds: Math.floor(a / 100)
+            };
+
+            console.log(decompose);
+        }
+        toObject(a);
+    </script>
+
+    <!-- Задание 2: Продолжить работу с интернет-магазином:
+    2.1. В прошлом домашнем задании вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы?
+    2.2. Реализуйте такие объекты.
+    2.3. Перенести функционал подсчета корзины на объектно-ориентированную базу. -->
+
+    <script>
+        let cartArr = [
+            {
+                name: 'T-shirt US Polo',
+                price: 3999,
+                count: 2
+            },
+            {
+                name: 'cap NY',
+                price: 2000,
+                count: 1
+            },
+            {
+                name: 'Jeans Levis',
+                price: 5999,
+                count: 1
+            },
+            {
+                name: 'Socks Nike',
+                price: 998,
+                count: 4
+            }
+        ]
+
+        // let countCartTotal = function (arr) {
+        // первый вариант, не очень оптимальный
+        //     let sumCart = 0;
+        //     for (let key of arr) {
+        //         sumCart += key.price * key.count
+        //     }
+        //     return sumCart
+        // }
+        // console.log("В вашей корзине покупок на: " + countCartTotal(cartArr) + " рублей.")
+
+
+        //второй вариант оптимальнее
+        let countCartPrice = (arr) => {
+            return arr.reduce((first, second) => first + second.price * second.count, 0)
+        }
+
+
+        console.log("Сумма покупок в корзине: " + countCartPrice(cartArr))
+    </script>
+
+</body>
+
+</html>
